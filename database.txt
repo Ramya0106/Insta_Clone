@@ -1,0 +1,106 @@
+USER DETAIL TABLE
+
+create table user_detail(u_id SERIAL PRIMARY KEY,u_Uname char(20) UNIQUE NOT NULL,u_name char(20) NOT NULL,u_password varchar(20) NOT NULL,u_email varchar(30) UNIQUE NOT NULL,u_phone text,u_dob date,u_photo text);
+
+
+ \d user_detail
+                                      Table "public.user_detail"
+   Column   |         Type          | Collation | Nullable |                  Default                  
+------------+-----------------------+-----------+----------+-------------------------------------------
+ u_id       | integer               |           | not null | nextval('user_detail_u_id_seq'::regclass)
+ u_uname    | character(20)         |           | not null | 
+ u_name     | character(20)         |           | not null | 
+ u_password | character varying(20) |           | not null | 
+ u_email    | character varying(30) |           | not null | 
+ u_phone    | text                  |           |          | 
+ u_dob      | date                  |           |          | 
+ u_photo    | text                  |           |          | 
+Indexes:
+    "user_detail_pkey" PRIMARY KEY, btree (u_id)
+    "user_detail_u_email_key" UNIQUE CONSTRAINT, btree (u_email)
+    "user_detail_u_uname_key" UNIQUE CONSTRAINT, btree (u_uname)
+Referenced by:
+    TABLE "following_follower" CONSTRAINT "following_follower_follower_id_fkey" FOREIGN KEY (follower_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    TABLE "following_follower" CONSTRAINT "following_follower_following_id_fkey" FOREIGN KEY (following_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    TABLE "message" CONSTRAINT "message_receiver_id_fkey" FOREIGN KEY (receiver_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    TABLE "message" CONSTRAINT "message_sender_id_fkey" FOREIGN KEY (sender_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    TABLE "post" CONSTRAINT "post_u_id_fkey" FOREIGN KEY (u_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FOLLOWING FOLLOWER TABLE
+
+create table following_follower(following_id int references user_detail(u_id) ON DELETE CASCADE ON UPDATE CASCADE,follower_id int references user_detail(u_id) ON DELETE CASCADE ON UPDATE CASCADE,PRIMARY KEY(following_id,follower_id));
+
+\d following_follower
+            Table "public.following_follower"
+    Column    |  Type   | Collation | Nullable | Default 
+--------------+---------+-----------+----------+---------
+ following_id | integer |           | not null | 
+ follower_id  | integer |           | not null | 
+Indexes:
+    "following_follower_pkey" PRIMARY KEY, btree (following_id, follower_id)
+Foreign-key constraints:
+    "following_follower_follower_id_fkey" FOREIGN KEY (follower_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    "following_follower_following_id_fkey" FOREIGN KEY (following_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+POST TABLE
+
+create table post(p_id SERIAL PRIMARY KEY,u_id int references user_detail ON DELETE CASCADE ON UPDATE CASCADE,p_path text,p_time timestamp);
+
+\d post
+                                       Table "public.post"
+ Column |            Type             | Collation | Nullable |              Default               
+--------+-----------------------------+-----------+----------+------------------------------------
+ p_id   | integer                     |           | not null | nextval('post_p_id_seq'::regclass)
+ u_id   | integer                     |           |          | 
+ p_path | text                        |           |          | 
+ p_time | timestamp without time zone |           |          | 
+Indexes:
+    "post_pkey" PRIMARY KEY, btree (p_id)
+Foreign-key constraints:
+    "post_u_id_fkey" FOREIGN KEY (u_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+Referenced by:
+    TABLE "like_cmnt" CONSTRAINT "like_cmnt_p_id_fkey" FOREIGN KEY (p_id) REFERENCES post(p_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LIKE COMMENT TABLE
+
+create table like_cmnt(p_id int references post ON DELETE CASCADE ON UPDATE CASCADE,p_like text,p_comment text,PRIMARY KEY(p_id));
+
+\d like_cmnt
+               Table "public.like_cmnt"
+  Column   |  Type   | Collation | Nullable | Default 
+-----------+---------+-----------+----------+---------
+ p_id      | integer |           | not null | 
+ p_like    | text    |           |          | 
+ p_comment | text    |           |          | 
+Indexes:
+    "like_cmnt_pkey" PRIMARY KEY, btree (p_id)
+Foreign-key constraints:
+    "like_cmnt_p_id_fkey" FOREIGN KEY (p_id) REFERENCES post(p_id) ON UPDATE CASCADE ON DELETE CASCADE
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MESSAGE TABLE
+
+create table message(sender_id int references user_detail(u_id) ON DELETE CASCADE ON UPDATE CASCADE,receiver_id int references user_detail(u_id) ON DELETE CASCADE ON UPDATE CASCADE,m_chat text,PRIMARY KEY(sender_id,receiver_id));
+
+\d message
+                 Table "public.message"
+   Column    |  Type   | Collation | Nullable | Default 
+-------------+---------+-----------+----------+---------
+ sender_id   | integer |           | not null | 
+ receiver_id | integer |           | not null | 
+ m_chat      | text    |           |          | 
+Indexes:
+    "message_pkey" PRIMARY KEY, btree (sender_id, receiver_id)
+Foreign-key constraints:
+    "message_receiver_id_fkey" FOREIGN KEY (receiver_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+    "message_sender_id_fkey" FOREIGN KEY (sender_id) REFERENCES user_detail(u_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

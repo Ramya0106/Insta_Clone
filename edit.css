@@ -1,0 +1,131 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+    background-color: #fafafa;
+  }
+
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .theme-dropdown .dropdown-menu {
+    position: static;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .theme-showcase > p > .btn {
+    margin: 5px 0;
+  }
+  /* .navbar-toggle{
+    border:1px solid white;
+  } */
+  
+  .theme-showcase .navbar .container {
+    width: auto;
+    
+  }
+  /* @media (min-width: 768px) */
+   .navbar-nav {
+      float: right;
+      margin: 0;
+     font-size: 22px;
+  } 
+  .navbar-fixed-top{
+    background-color:#ffffff;
+  }  
+  .navbar-brand,
+  .fa{
+    color:#000000;
+    cursor: pointer;
+  }
+  .theme-showcase{
+    margin-top: 50px;
+  }
+  .sidebar-module{
+    /* border:1px solid rgb(241, 215, 215); */
+    /* background-color: white; */
+    margin-top: 50px;
+    
+  }
+  .navbar-toggle{
+    border: 1px solid black;
+  }
+  .sidebar-module a{
+    float: right;
+  }
+
+
+  .navbar-fixed-bottom {
+    display:none;
+ }
+ 
+ @media only screen and (max-width: 767px) {
+   .navbar-fixed-bottom {
+     display:initial;
+     background-color:#ffffff ;
+   }
+ }
+ .navbar-fixed-bottom .fa{
+   display:none;
+ }
+ 
+ @media only screen and (max-width: 767px) {
+   .navbar-fixed-bottom .fa{
+     display:initial;
+     font-size:150%;
+     display:inline-block;
+     width:19%;
+   }
+   .navbar-nav{
+     display:none;
+   }
+ }
+@media only screen and (max-width: 700px) {
+  .container-full {
+    margin:0 auto;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .navbar-fixed-bottom {
+    /* margin:0 auto;
+    width: 100%; */
+    width:100%;
+  }
+}
+.ttt {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    margin: 35px auto;
+    max-width: 600px
+}
+.mb-n1{
+    margin-bottom: 2%;
+  }
+
+  .image{
+    cursor: pointer;
+    display:block;
+    width:100%;
+    background-color:rgb(185, 176, 176);
+    padding-bottom: 125%;
+  }
+
+  .sec {
+    margin-bottom: 7%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.mb{
+  padding-bottom: 8%;
+}
+
+@media only screen and (max-width: 767px) {
+  .mb {
+    /* margin:0 auto;
+    width: 100%; */
+    padding-bottom: 0px;
+  }
+}

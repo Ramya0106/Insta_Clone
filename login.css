@@ -1,0 +1,83 @@
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  background-color: #fafafa;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 74%;
+  padding: 20px;
+}
+
+#formContent {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(219, 214, 214);
+  padding: 15px 20px 25px 20px;
+  width: 90%;
+  max-width: 350px;
+  position: relative;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+#formContent1 {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(219, 214, 214);
+  padding: 8px 0px;
+  width: 90%;
+  max-width: 350px;
+  position: relative;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.form .input_field{
+	margin-bottom: 5px;
+}
+form .input_field .input{
+	width: 100%;
+	background: #fafafa;
+	border: 1px solid #d6d5d5;
+	font-size: 12px;
+	border-radius: 3px;
+	color: #262626;
+	padding: 10px;
+}
+form .input_field .input:focus{
+	border: 1px solid #b2b2b2;
+}
+
+.form {
+	margin: 10px 0;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+	display: block;
+}
+
+.or{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 15px;
+	margin: 15px 0 20px;
+}
+
+.or .line{
+	width: 105px;
+	height: 2px;
+	background: #efefef
+}
+
+.or{
+	color: #999;
+	font-size: 12px;
+}
