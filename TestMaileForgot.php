@@ -20,12 +20,12 @@
             $mail->isSMTP(true);											 
             $mail->Host = 'smtp.gmail.com';					 
             $mail->SMTPAuth = "true";							 
-            $mail->Username = 'instagramrvclone@gmail.com';				 
-            $mail->Password = 'Instagram@rv123';						 
+            $mail->Username = 'mail@gmail.com';				 
+            $mail->Password = 'password';						 
             $mail->SMTPSecure = 'ssl';							 
             $mail->Port = 465; 
 
-            $mail->setFrom('instagramrvclone@gmail.com', 'Instagram Clone');		 
+            $mail->setFrom('mail@gmail.com', 'Instagram Clone');		 
             $mail->addAddress($email); 
             $mail->addAddress($email, $fname); 
             
